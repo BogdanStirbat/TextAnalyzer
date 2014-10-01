@@ -3,4 +3,4 @@ target/
 *.classpath
 .classpath
 herodotus/.project
-data/
+data/*~
