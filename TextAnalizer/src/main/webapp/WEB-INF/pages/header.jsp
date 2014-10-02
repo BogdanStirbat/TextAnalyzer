@@ -6,13 +6,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/style.css" type="text/css">
 <title>Welcome</title>
 </head>
 <body>
-  <jsp:include page="header.jsp" />
-  
-  <p>Welcome</p>
-  
-  <jsp:include page="footer.jsp" />
+  <div id="header">
+    <ul id="navigation">
+      <li class="active">
+        <a href="index">Home</a>
+      </li>
+      <li>
+        <a href="upload_file.jsp">Upload a file</a>
+      </li>
+      <li>
+        <a href="analyze">Make text analysis</a>
+      </li>
+    </ul>
+  </div>
 </body>
 </html>

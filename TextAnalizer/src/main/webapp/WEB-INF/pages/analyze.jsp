@@ -11,7 +11,7 @@
 <body>
   <jsp:include page="header.jsp" />
   
-  <p>Welcome</p>
+  <p>Analyze</p>
   
   <jsp:include page="footer.jsp" />
 </body>

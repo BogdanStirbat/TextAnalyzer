@@ -11,5 +11,9 @@ public class HomeController {
 	public ModelAndView getIndex() {
 		return new ModelAndView("home");
 	}
-
+	
+	@RequestMapping("analyze")
+	public ModelAndView getAnalyze() {
+		return new ModelAndView("analyze");
+	}
 }

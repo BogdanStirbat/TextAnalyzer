@@ -2,5 +2,5 @@ target/
 .settings/
 *.classpath
 .classpath
-herodotus/.project
 data/*~
+TextAnalizer/.project
