@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/style.css" type="text/css">
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>" rel="stylesheet">
 <title>Welcome</title>
 </head>
 <body>
@@ -14,9 +14,6 @@
     <ul id="navigation">
       <li class="active">
         <a href="index">Home</a>
-      </li>
-      <li>
-        <a href="upload_file.jsp">Upload a file</a>
       </li>
       <li>
         <a href="analyze">Make text analysis</a>

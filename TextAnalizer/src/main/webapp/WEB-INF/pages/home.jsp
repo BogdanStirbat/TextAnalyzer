@@ -11,7 +11,7 @@
 <body>
   <jsp:include page="header.jsp" />
   
-  <p>Welcome</p>
+  <p>Upload a file</p>
   
   <jsp:include page="footer.jsp" />
 </body>
