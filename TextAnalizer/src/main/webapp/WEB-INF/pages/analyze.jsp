@@ -11,7 +11,9 @@
 <body>
   <jsp:include page="header.jsp" />
   
-  <p>Analyze</p>
+  <div id="title">
+    <h1>Make text analysis</h1>
+  </div>
   
   <jsp:include page="footer.jsp" />
 </body>

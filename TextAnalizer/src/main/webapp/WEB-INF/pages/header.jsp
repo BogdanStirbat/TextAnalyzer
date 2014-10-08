@@ -11,8 +11,12 @@
 </head>
 <body>
   <div id="header">
-    <ul id="navigation">
-      <li class="active">
+    <h1>Text analyzer</h1>
+  </div>
+  
+  <div id="menu">
+    <ul>
+      <li>
         <a href="index">Home</a>
       </li>
       <li>

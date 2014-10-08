@@ -9,7 +9,7 @@
 </head>
 <body>
   <div id="footer">
-    <h6>Text Analyzer</h6>
+    
   </div>
 </body>
 </html>
