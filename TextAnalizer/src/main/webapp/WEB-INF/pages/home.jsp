@@ -15,6 +15,15 @@
     <h1>Upload a file</h1>
   </div>
   
+  <div id="content">
+    <form action="/TextAnalizer/index" method="POST" enctype="multipart/form-data">
+      <label>Select file: </label>
+      <input type="file" name="file">
+      <br>
+      <input type="submit" value="Load file"> 
+    </form>
+  </div>
+  
   <jsp:include page="footer.jsp" />
 </body>
 </html>
