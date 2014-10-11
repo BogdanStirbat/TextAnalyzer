@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.bogdans.textanalizer.model.FileUploadResultModel;
+
+
 
 @Controller
 public class HomeController {
@@ -32,9 +35,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/index", method = RequestMethod.POST)
-	public @ResponseBody String uploadFileHandler(@RequestParam("file") MultipartFile file) {
+	public @ResponseBody ModelAndView uploadFileHandler(@RequestParam("file") MultipartFile file) {
+		FileUploadResultModel result = new FileUploadResultModel();
 		if (file.isEmpty()) {
-			return "Error: file empty";
+			result.setMessage("Error: file empty");
+			result.setSuccess(false);
+			return new ModelAndView("home", "result", result);
 		}
 		
 		try {
@@ -46,10 +52,14 @@ public class HomeController {
 			}
 			
 		} catch (IOException e) {
-			return "An error occured";
+			result.setMessage("An error occured");
+			result.setSuccess(false);
+			return new ModelAndView("home", "result", result);
 		}
 		
+		result.setMessage("File uploaded successfully");
+		result.setSuccess(true);
+		return new ModelAndView("home", "result", result);
 		
-		return "File uploaded successfully";
 	}
 }
