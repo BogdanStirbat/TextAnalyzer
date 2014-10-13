@@ -23,6 +23,10 @@
     <property name="maxUploadSize" value="100000" />
   </bean>
   
+  <bean name="fileUploadValidator" class="com.bogdans.textanalizer.validators.FileUploadValidatorImpl" />
+  
+  <bean name="fileUploadService" class="com.bogdans.textanalizer.service.FileUploadServiceImpl" />
+    
   <mvc:resources location="/resources/" mapping="/resources/**"/>
  
 </beans>
