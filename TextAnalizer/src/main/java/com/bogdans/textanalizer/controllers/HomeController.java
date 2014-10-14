@@ -41,28 +41,32 @@ public class HomeController {
 	
 	@RequestMapping(value = "/index", method = RequestMethod.POST)
 	public @ResponseBody ModelAndView uploadFileHandler(@RequestParam("file") MultipartFile file) {
-		FileUploadResultModel result = new FileUploadResultModel();
+		FileUploadResultModel result;
 		String fileName = file.getOriginalFilename();
 		if (file.isEmpty()) {
-			result.setMessage("Error: file empty");
-			result.setSuccess(false);
+			result = createResult("Error: file empty", false);
 			return new ModelAndView("home", "result", result);
 		}
 		if (fileUploadValidator.isDuplicateFileName(fileName)) {
-			result.setMessage("Error: duplicate file found: " + fileName);
-			result.setSuccess(false);
+			result = createResult("Error: duplicate file found: " + fileName, false);
 			return new ModelAndView("home", "result", result);
 		}
 		try {
 			InputStream inputStream = file.getInputStream();
 			result = fileUploadService.uploadFile(inputStream, fileName);
+			return new ModelAndView("home", "result", result);
 			
 		} catch (IOException e) {
-			result.setMessage("An error occured");
-			result.setSuccess(false);
+			result = createResult("An error occured", false);
 			return new ModelAndView("home", "result", result);
 		}
-		
-		return new ModelAndView("home", "result", result);
+	}
+	
+	
+	public FileUploadResultModel createResult(String message, boolean success) {
+		FileUploadResultModel model = new FileUploadResultModel();
+		model.setMessage(message);
+		model.setSuccess(success);
+		return model;
 	}
 }
