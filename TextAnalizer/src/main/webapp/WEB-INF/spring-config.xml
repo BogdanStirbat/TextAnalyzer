@@ -28,5 +28,7 @@
   <bean name="fileUploadService" class="com.bogdans.textanalizer.service.FileUploadServiceImpl" />
     
   <mvc:resources location="/resources/" mapping="/resources/**"/>
+  
+  <import resource="mongodb.spring.xml"/>
  
 </beans>

@@ -4,20 +4,24 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.UnknownHostException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
+import com.bogdans.textanalizer.constants.ImportedFilesTable;
+import com.bogdans.textanalizer.constants.MongoCollections;
+import com.bogdans.textanalizer.constants.WordsPerFileTable;
 import com.bogdans.textanalizer.model.FileUploadResultModel;
 import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
 import com.mongodb.DBCollection;
-import com.mongodb.Mongo;
 
 public class FileUploadServiceImpl implements FileUploadService {
 	
 	Logger logger = LoggerFactory.getLogger(FileUploadServiceImpl.class);
+	
+	@Autowired
+	private MongoTemplate mongoTemplate;
 	
 	@Override
 	public FileUploadResultModel uploadFile(InputStream inputStream,
@@ -25,10 +29,8 @@ public class FileUploadServiceImpl implements FileUploadService {
 		FileUploadResultModel model = new FileUploadResultModel();
 		
 		try {
-			Mongo mongo = new Mongo("localhost", 27017);
-			DB db = mongo.getDB("text_analyzer");
-			DBCollection imported_files = db.getCollection("imported_files");
-			DBCollection words_per_file = db.getCollection("words_per_file");
+			DBCollection imported_files = mongoTemplate.getCollection(MongoCollections.IMPORTED_FILES);
+			DBCollection words_per_file = mongoTemplate.getCollection(MongoCollections.WORDS_PER_FILE);
 			addFileNameToDatabase(imported_files, fileName);
 			addFileContentToDatabase(words_per_file, inputStream, fileName);
 		} catch (IOException e) {
@@ -43,7 +45,7 @@ public class FileUploadServiceImpl implements FileUploadService {
 	
 	private void addFileNameToDatabase(DBCollection imported_files, String fileName) {
 		BasicDBObject document = new BasicDBObject();
-		document.put("file", fileName);
+		document.put(ImportedFilesTable.FILE, fileName);
 		imported_files.insert(document);
 	}
 	
@@ -62,8 +64,8 @@ public class FileUploadServiceImpl implements FileUploadService {
 		String[] words = line.replaceAll("[^a-zA-Z'\\s]", "").toLowerCase().split("\\s+");
 		for(String word : words) {
 			BasicDBObject document = new BasicDBObject();
-			document.put("file", fileName);
-			document.put("word", word);
+			document.put(WordsPerFileTable.FILE, fileName);
+			document.put(WordsPerFileTable.WORD, word);
 			imported_files.insert(document);
 		}
 	}
