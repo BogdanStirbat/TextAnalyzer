@@ -26,6 +26,8 @@
   <bean name="fileUploadValidator" class="com.bogdans.textanalizer.validators.FileUploadValidatorImpl" />
   
   <bean name="fileUploadService" class="com.bogdans.textanalizer.service.FileUploadServiceImpl" />
+  
+  <bean name="analyzeService" class="com.bogdans.textanalizer.service.AnalyzeServiceImpl" />
     
   <mvc:resources location="/resources/" mapping="/resources/**"/>
   

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.bogdans.textanalizer.model.AnalyzeResult" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -28,6 +30,25 @@
       <br>
       <input type="submit" value="Analyze term"> 
     </form>
+    <br>
+    
+     <%
+       List<AnalyzeResult> result = (List<AnalyzeResult>) request.getAttribute("result");
+       if (result != null && result.size() > 0) {
+    	   out.print("<table>");
+    	   out.print("<tr>");
+    	   out.print("<td>File name</td>");
+    	   out.print("<td>Number of occurrences</td>");
+     	   out.print("</tr>");
+    	   for (AnalyzeResult analyzeResult : result) {
+    		   out.print("<tr>");
+    		   out.print("<td>" + analyzeResult.getFileName() + "</td>");
+    		   out.print("<td>" + analyzeResult.getNumberOfOccurences() + "</td>");
+    		   out.print("</tr>");
+    	   }
+         out.print("</table>");
+        }
+     %>
   </div>
   
   <jsp:include page="footer.jsp" />
