@@ -34,11 +34,6 @@ public class HomeController {
 		return new ModelAndView("home");
 	}
 	
-	@RequestMapping("analyze")
-	public ModelAndView getAnalyze() {
-		return new ModelAndView("analyze");
-	}
-	
 	@RequestMapping(value = "/index", method = RequestMethod.POST)
 	public @ResponseBody ModelAndView uploadFileHandler(@RequestParam("file") MultipartFile file) {
 		FileUploadResultModel result;
