@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Welcome</title>
+<title>Upload a file</title>
 </head>
 <body>
   <jsp:include page="header.jsp" />
