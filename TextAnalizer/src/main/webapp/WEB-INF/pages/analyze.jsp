@@ -37,13 +37,13 @@
        AnalyzeResult result = (AnalyzeResult) request.getAttribute("result");
        if (result != null) {
     	   out.println("<div style=\"color:green\"> Term:" + result.getInputTerm() + "</div>");
-         out.print("<table>");
-         out.print("<tr>");
-         out.print("<td>File name</td>");
-         out.print("<td>Number of occurrences</td>");
-         out.print("</tr>");
          List<AnalyzeFilenameOccurence> occurences = result.getOccurences();
          if (occurences != null && occurences.size() > 0) {
+        	 out.print("<table border=\"1\">");
+           out.print("<tr>");
+           out.print("<td>File name</td>");
+           out.print("<td>Number of occurrences</td>");
+           out.print("</tr>");
         	 for (AnalyzeFilenameOccurence analyzeResult : occurences) {
         		 out.print("<tr>");
         		 out.print("<td>" + analyzeResult.getFileName() + "</td>");
@@ -52,7 +52,6 @@
         	 }
         	 out.print("</table>");
          } else {
-        	 out.print("</table>");
         	 out.print("<p>No data found.</p>");
          }
        }
