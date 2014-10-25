@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bogdans.textanalizer.model.AnalyzeFilenameOccurence;
+import com.bogdans.textanalizer.model.AnalyzeResult;
 import com.bogdans.textanalizer.service.AnalyzeService;
 
 @Controller
@@ -29,7 +30,7 @@ public class AnalyzeController {
 	
 	@RequestMapping(value = "/analyze", method = RequestMethod.POST)
 	public @ResponseBody ModelAndView analyzeTerm(@RequestParam("input_term") String inputText) {
-		List<AnalyzeFilenameOccurence> result = analyzeService.analyzeTerm(inputText);
+		AnalyzeResult result = analyzeService.analyzeTerm(inputText);
 		
 		return new ModelAndView("analyze", "result", result);
 	}

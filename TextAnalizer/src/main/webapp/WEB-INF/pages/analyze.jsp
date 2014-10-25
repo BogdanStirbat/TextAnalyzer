@@ -2,6 +2,7 @@
   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.bogdans.textanalizer.model.AnalyzeFilenameOccurence" %>
+<%@ page import="com.bogdans.textanalizer.model.AnalyzeResult" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -33,22 +34,29 @@
     <br>
     
      <%
-         	List<AnalyzeFilenameOccurence> result = (List<AnalyzeFilenameOccurence>) request.getAttribute("result");
-                if (result != null && result.size() > 0) {
-             	   out.print("<table>");
-             	   out.print("<tr>");
-             	   out.print("<td>File name</td>");
-             	   out.print("<td>Number of occurrences</td>");
-              	   out.print("</tr>");
-             	   for (AnalyzeFilenameOccurence analyzeResult : result) {
-             		   out.print("<tr>");
-             		   out.print("<td>" + analyzeResult.getFileName() + "</td>");
-             		   out.print("<td>" + analyzeResult.getNumberOfOccurences() + "</td>");
-             		   out.print("</tr>");
-             	   }
-                  out.print("</table>");
-                 }
-         %>
+       AnalyzeResult result = (AnalyzeResult) request.getAttribute("result");
+       if (result != null) {
+    	   out.println("<div style=\"color:green\"> Term:" + result.getInputTerm() + "</div>");
+         out.print("<table>");
+         out.print("<tr>");
+         out.print("<td>File name</td>");
+         out.print("<td>Number of occurrences</td>");
+         out.print("</tr>");
+         List<AnalyzeFilenameOccurence> occurences = result.getOccurences();
+         if (occurences != null && occurences.size() > 0) {
+        	 for (AnalyzeFilenameOccurence analyzeResult : occurences) {
+        		 out.print("<tr>");
+        		 out.print("<td>" + analyzeResult.getFileName() + "</td>");
+        		 out.print("<td>" + analyzeResult.getNumberOfOccurences() + "</td>");
+        		 out.print("</tr>");
+        	 }
+        	 out.print("</table>");
+         } else {
+        	 out.print("</table>");
+        	 out.print("<p>No data found.</p>");
+         }
+       }
+     %>
   </div>
   
   <jsp:include page="footer.jsp" />
