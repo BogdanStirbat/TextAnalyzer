@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import com.bogdans.textanalizer.constants.MongoCollections;
-import com.bogdans.textanalizer.model.AnalyzeResult;
+import com.bogdans.textanalizer.model.AnalyzeFilenameOccurence;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
@@ -19,8 +19,8 @@ public class AnalyzeServiceImpl implements AnalyzeService{
 	private MongoTemplate mongoTemplate;
 
 	@Override
-	public List<AnalyzeResult> analyzeTerm(String inputTerm) {
-		List<AnalyzeResult> result = new ArrayList<AnalyzeResult>();
+	public List<AnalyzeFilenameOccurence> analyzeTerm(String inputTerm) {
+		List<AnalyzeFilenameOccurence> result = new ArrayList<AnalyzeFilenameOccurence>();
 		
 		DBCollection words_per_file = mongoTemplate.getCollection(MongoCollections.WORDS_PER_FILE);
 		
@@ -29,7 +29,7 @@ public class AnalyzeServiceImpl implements AnalyzeService{
 			DBObject object = cursor.next();
 			String fileName = (String) object.get("file");
 			boolean found = false;
-			for (AnalyzeResult analyzeResult : result) {
+			for (AnalyzeFilenameOccurence analyzeResult : result) {
 				if (analyzeResult.getFileName().equalsIgnoreCase(fileName)) {
 					int count = analyzeResult.getNumberOfOccurences();
 					count++;
@@ -39,7 +39,7 @@ public class AnalyzeServiceImpl implements AnalyzeService{
 				}
 			}
 			if (!found) {
-				AnalyzeResult analyzeResult = new AnalyzeResult();
+				AnalyzeFilenameOccurence analyzeResult = new AnalyzeFilenameOccurence();
 				analyzeResult.setFileName(fileName);
 				analyzeResult.setNumberOfOccurences(1);
 				result.add(analyzeResult);

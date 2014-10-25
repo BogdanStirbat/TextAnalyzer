@@ -2,8 +2,8 @@ package com.bogdans.textanalizer.service;
 
 import java.util.List;
 
-import com.bogdans.textanalizer.model.AnalyzeResult;
+import com.bogdans.textanalizer.model.AnalyzeFilenameOccurence;
 
 public interface AnalyzeService {
-	public List<AnalyzeResult> analyzeTerm(String inputTerm);
+	public List<AnalyzeFilenameOccurence> analyzeTerm(String inputTerm);
 }
