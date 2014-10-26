@@ -1,7 +1,5 @@
 package com.bogdans.textanalizer.controllers;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.bogdans.textanalizer.model.AnalyzeFilenameOccurence;
 import com.bogdans.textanalizer.model.AnalyzeResult;
 import com.bogdans.textanalizer.service.AnalyzeService;
 

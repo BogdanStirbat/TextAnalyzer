@@ -22,6 +22,9 @@
       <li>
         <a href="analyze">Make text analysis</a>
       </li>
+      <li>
+        <a href="files">Imported files</a>
+      </li>
     </ul>
   </div>
 </body>

@@ -28,6 +28,8 @@
   <bean name="fileUploadService" class="com.bogdans.textanalizer.service.FileUploadServiceImpl" />
   
   <bean name="analyzeService" class="com.bogdans.textanalizer.service.AnalyzeServiceImpl" />
+  
+  <bean name="importedFilesService" class="com.bogdans.textanalizer.service.ImportedFilesServiceImpl" />
     
   <mvc:resources location="/resources/" mapping="/resources/**"/>
   
